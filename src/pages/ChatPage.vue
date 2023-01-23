@@ -1,5 +1,8 @@
 <template>
   <q-page class="flex" column>
+    <q-banner  class="text-white bg-grey-5 text-center">
+      User is offline.
+    </q-banner>
     <div class="q-pa-md column col justify-end">
       <q-chat-message
         v-for="message in messages"
@@ -11,23 +14,26 @@
     </div>
     <q-footer elevated>
         <q-toolbar>
-          <q-input 
-            bg-color="white" 
-            class="full-width"
-            outlined 
-            rounded 
-            v-model="newMessge" 
-            label="Message" 
-            dense>
-            <template v-slot:after>
-              <q-btn 
-                round
-                color="white" 
-                dense 
-                flat 
-                icon="send" />
-            </template>
-          </q-input>
+          <q-form  @submit="sendMessage"
+          class="full-width">
+            <q-input 
+              bg-color="white" 
+              outlined 
+              rounded 
+              v-model="newMessage" 
+              label="Message" 
+              dense>
+              <template v-slot:after>
+                <q-btn 
+                  @click="sendMessage"
+                  round
+                  color="white" 
+                  dense 
+                  flat 
+                  icon="send" />
+              </template>
+            </q-input>
+          </q-form>
         </q-toolbar>
       </q-footer>
   </q-page>
@@ -58,6 +64,18 @@
           from: 'them'
         }
       ]
+    }
+  },
+
+  // methods
+
+  methods: {
+    sendMessage() {
+      this.messages.push({
+        text: this.newMessage,
+        from: 'me'
+      })
+      this.newMessage = ''
     }
   },
  }
