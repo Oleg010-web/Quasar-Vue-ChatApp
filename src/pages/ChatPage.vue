@@ -2,13 +2,11 @@
   <q-page class="flex" column>
     <div class="q-pa-md column col justify-end">
       <q-chat-message
-        name="me"
-        :text="['hey, how are you?']"
-        sent
-      />
-      <q-chat-message
-        name="Jane"
-        :text="['doing fine, how r you?']"
+        v-for="message in messages"
+        :key="message.text"
+        :name="message.from"
+        :text="[message.text]"
+        :sent="message.from == 'me' ? true : false"
       />
     </div>
     <q-footer elevated>
@@ -39,7 +37,27 @@
  export default {
   data() {
     return {
-      newMessage: ''
+      newMessage: '',
+      messages: [
+        {
+          text: 'Hi, my friend, how are you today?',
+          from: 'me'
+        }, {
+          text: 'I was on vacation last week, had a good time)',
+          from: 'me'
+        },
+        {
+          text: 'Wow, that is really interestig, glad for you, where have you been?',
+          from: 'them'
+        },
+        {
+          text: 'Was in Thailand) I need to tell you so many things, lets meet and i will tell you everything. I think it will be better then to chat here',
+          from: 'me'
+        },{
+          text: 'Cool) Yeah, i agree.',
+          from: 'them'
+        }
+      ]
     }
   },
  }
