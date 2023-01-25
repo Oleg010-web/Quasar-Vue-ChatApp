@@ -1,5 +1,8 @@
 import { store } from 'quasar/wrappers'
-import { createPinia } from 'pinia'
+import Vuex from 'vuex'
+import  state from './store'
+import { Vue } from 'vue-demi'
+
 
 /*
  * If not building with SSR mode, you can
@@ -10,11 +13,14 @@ import { createPinia } from 'pinia'
  * with the Store instance.
  */
 
-export default store((/* { ssrContext } */) => {
-  const pinia = createPinia()
+export default function (/* {ssrContext} */) {
+    const Store = new Vuex.Store({
+        modules: {
+            state
+        },
 
-  // You can add Pinia plugins here
-  // pinia.use(SomePiniaPlugin)
-
-  return pinia
-})
+        strict: process.env.DEV
+    })
+  
+    return Store
+}
