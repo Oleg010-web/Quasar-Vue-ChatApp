@@ -1,0 +1,74 @@
+{
+    "users": {
+        "UserID1": {
+            "name": "Oleg",
+            "email": "oleg@test.ru",
+            "online": true
+        },
+        "UserID2": {
+            "name": "Vladimir",
+            "email": "vladimir@test.ru",
+            "online": true
+        },
+        "UserID3": {
+            "name": "Cristina",
+            "email": "Cristina@test.ru",
+            "online": false
+        },
+        "UserID4": {
+            "name": "Polli",
+            "email": "Polli@test.ru",
+            "online": true
+        }
+    },
+    "chats": {
+        "UserID1": {
+            "UserID2": {
+                "MessageID1": {
+                    "text": "Hi, my friend, how are you today?",
+                    "from": "me"
+                },
+                "MessageID2": {
+                    "text": "I was on vacation last week, had a good time)",
+                    "from": "me"
+                },
+                "MessageID3": {
+                    "text": "Wow, that is really interestig, glad for you, where have you been?",
+                    "from": "them"
+                },
+                "MessageID4": {
+                    "text": "Was in Thailand) I need to tell you so many things, lets meet and i will tell you everything. I think it will be better then to chat here",
+                    "from": "me"
+                },
+                "MessageID5": {
+                    "text": "Cool) Yeah, i agree.",
+                    "from": "them"
+                }
+            }
+        },
+        "UserID2": {
+            "UserID1": {
+                "MessageID1": {
+                    "text": "Hi, my friend, how are you today?",
+                    "from": "them"
+                },
+                "MessageID2": {
+                    "text": "I was on vacation last week, had a good time)",
+                    "from": "them"
+                },
+                "MessageID3": {
+                    "text": "Wow, that is really interestig, glad for you, where have you been?",
+                    "from": "me"
+                },
+                "MessageID4": {
+                    "text": "Was in Thailand) I need to tell you so many things, lets meet and i will tell you everything. I think it will be better then to chat here",
+                    "from": "them"
+                },
+                "MessageID5": {
+                    "text": "Cool) Yeah, i agree.",
+                    "from": "me"
+                }
+            }
+        }
+    }
+}
