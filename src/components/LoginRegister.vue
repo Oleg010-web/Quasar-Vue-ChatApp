@@ -49,10 +49,10 @@ import { mapActions } from 'vuex'
     },
    // methods
     methods: {
-      ...mapActions('state', ['registerUser']),   
+      ...mapActions('state', ['registerUser', 'loginUser']),   
         submitForm(){
         if (this.tab == 'login') {
-            console.log ('login the user')
+            this.loginUser(this.formData)
         }
         else {
             this.registerUser(this.formData)
