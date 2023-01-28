@@ -55,7 +55,7 @@ import { mapActions } from 'vuex'
             console.log ('login the user')
         }
         else {
-            this.registerUser()
+            this.registerUser(this.formData)
 
         }
      }
