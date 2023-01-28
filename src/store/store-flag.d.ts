@@ -3,8 +3,8 @@
 //  REMOVAL OR CHANGES WILL CAUSE RELATED TYPES TO STOP WORKING
 import "quasar/dist/types/feature-flag";
 
-// declare module "quasar/dist/types/feature-flag" {
-//   interface QuasarFeatureFlags {
-//     store: true;
-//   }
-// }
+declare module "quasar/dist/types/feature-flag" {
+  interface QuasarFeatureFlags {
+    store: true;
+  }
+}
