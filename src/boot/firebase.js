@@ -3,8 +3,8 @@
 // import {firebase} from "firebase/app"
 import { initializeApp } from "firebase/app";
   //Add the firebase products that you want to use
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { getDatabase, ref, set } from "firebase/database";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
+import { getDatabase, ref, set, get } from "firebase/database";
 
 
 const firebaseConfig = {
@@ -23,4 +23,4 @@ const firebaseAuth = getAuth(app)
 const firebaseDb = getDatabase(app)
 
 
-export { firebaseAuth, firebaseDb, createUserWithEmailAndPassword,signInWithEmailAndPassword, ref, set}
+export { firebaseAuth, firebaseDb, createUserWithEmailAndPassword,signInWithEmailAndPassword, ref, set, get, onAuthStateChanged}
