@@ -1,7 +1,8 @@
 import { DataSnapshot } from "firebase/database";
-import { firebaseAuth, firebaseDb, ref, set, signInWithEmailAndPassword, onAuthStateChanged, get} from "src/boot/firebase";
+import { firebaseAuth, firebaseDb, ref, set, signInWithEmailAndPassword, onAuthStateChanged, get, signOut} from "src/boot/firebase";
 import { createUserWithEmailAndPassword } from "src/boot/firebase";
 import { setUserDetails } from "./mutations";
+
 /*
 export function someAction (context) {
 }
@@ -34,6 +35,9 @@ export function loginUser({}, payload){
         console.log(Error.message);
     })
 }
+export function logOutUser() {
+  firebaseAuth.signOut()
+}
 export function handleAuthStateChanged({commit}){
     firebaseAuth.onAuthStateChanged(user => {
         if (user) {
@@ -49,10 +53,12 @@ export function handleAuthStateChanged({commit}){
                 userId: userId
             })
           })
+          this.$router.push('/')
         }
         else {
           // User is logged out  
-
+          commit('setUserDetails', {})
+          this.$router.replace('/auth')
         }
       });
 }
