@@ -1,5 +1,5 @@
 import { DataSnapshot, update } from "firebase/database";
-import { firebaseAuth, firebaseDb, ref, set, signInWithEmailAndPassword, onAuthStateChanged, get, signOut} from "src/boot/firebase";
+import { firebaseAuth, firebaseDb, ref, set, signInWithEmailAndPassword, onAuthStateChanged, get, signOut, onValue, onChildAdded} from "src/boot/firebase";
 import { createUserWithEmailAndPassword } from "src/boot/firebase";
 import { setUserDetails } from "./mutations";
 
@@ -45,6 +45,19 @@ export function firebaseUpdateUser({}, payload) {
     })
   }
 }
+export function firebaseGetUsers({commit}) {
+
+  let userCounterRef = ref(firebaseDb, 'users/')
+  onChildAdded(userCounterRef, DataSnapshot => {
+    let userDetails =  DataSnapshot.val()
+    let userId = DataSnapshot.key
+    console.log('userId: ', userId);
+    commit('addUser', {
+      userId,
+      userDetails
+    })
+  })
+}  
 export function handleAuthStateChanged({commit, dispatch, state}){
     firebaseAuth.onAuthStateChanged(user => {
         if (user) {
@@ -66,6 +79,7 @@ export function handleAuthStateChanged({commit, dispatch, state}){
               online: true
             }
           })
+          dispatch('firebaseGetUsers')
           this.$router.push('/')
         }
         else {
