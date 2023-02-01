@@ -11,5 +11,11 @@
     "javascriptreact",
     "typescript",
     "vue"
-  ]
+  ],
+  "[javascript]": {
+    "editor.defaultFormatter": "numso.prettier-standard-vscode"
+  },
+  "[vue]": {
+    "editor.defaultFormatter": "Wscats.vue"
+  }
 }
