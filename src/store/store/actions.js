@@ -1,7 +1,7 @@
 import { DataSnapshot, update } from "firebase/database";
-import { firebaseAuth, firebaseDb, ref, set, signInWithEmailAndPassword, onAuthStateChanged, get, signOut, onValue, onChildAdded} from "src/boot/firebase";
+import { firebaseAuth, firebaseDb, ref, set, signInWithEmailAndPassword, onAuthStateChanged, get, signOut, onValue, onChildAdded, onChildChanged} from "src/boot/firebase";
 import { createUserWithEmailAndPassword } from "src/boot/firebase";
-import { setUserDetails } from "./mutations";
+import { setUserDetails, updateUser } from "./mutations";
 
 /*
 export function someAction (context) {
@@ -53,6 +53,15 @@ export function firebaseGetUsers({commit}) {
     let userId = DataSnapshot.key
     console.log('userId: ', userId);
     commit('addUser', {
+      userId,
+      userDetails
+    })
+  })
+  onChildChanged(userCounterRef, DataSnapshot => {
+    let userDetails =  DataSnapshot.val()
+    let userId = DataSnapshot.key
+    console.log('userId: ', userId);
+    commit('updateUser', {
       userId,
       userDetails
     })
