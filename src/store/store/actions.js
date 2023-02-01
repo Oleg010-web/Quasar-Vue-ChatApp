@@ -22,7 +22,7 @@ export function registerUser({}, payload) {
           })
     })
     .catch(Error => {
-        console.log(Error.message);
+        console.log('Error: ' + Error.message);
     })
 } 
 export function loginUser({}, payload){

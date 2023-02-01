@@ -3,8 +3,8 @@
     <q-list 
     class="full-width"
     separator="">
-      <q-item v-for="user in users" 
-        :key="user.userId"
+      <q-item v-for="(user, key) in users" 
+        :key="key"
         to="/chat" 
         clickable 
         v-ripple>
