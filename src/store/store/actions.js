@@ -10,15 +10,17 @@ import {
   signOut,
   onValue,
   onChildAdded,
-  onChildChanged
+  onChildChanged,
+  off
 } from 'src/boot/firebase'
 import { createUserWithEmailAndPassword } from 'src/boot/firebase'
-import { setUserDetails, updateUser } from './mutations'
+import { setUserDetails, updateUser, addMessage, clearMessages } from './mutations'
 
 /*
 export function someAction (context) {
 }
 */
+
 
 export function registerUser ({}, payload) {
   console.log(payload)
@@ -37,6 +39,7 @@ export function registerUser ({}, payload) {
       console.log('Error: ' + Error.message)
     })
 }
+
 export function loginUser ({}, payload) {
   console.log(payload)
   signInWithEmailAndPassword(firebaseAuth, payload.email, payload.password)
@@ -47,9 +50,11 @@ export function loginUser ({}, payload) {
       console.log(Error.message)
     })
 }
+
 export function logOutUser () {
   firebaseAuth.signOut()
 }
+
 export function firebaseUpdateUser ({}, payload) {
   if (payload.userId) {
     update(ref(firebaseDb, 'users/' + payload.userId), {
@@ -57,6 +62,7 @@ export function firebaseUpdateUser ({}, payload) {
     })
   }
 }
+
 export function firebaseGetUsers ({ commit }) {
   let userCounterRef = ref(firebaseDb, 'users/')
   onChildAdded(userCounterRef, DataSnapshot => {
@@ -78,6 +84,7 @@ export function firebaseGetUsers ({ commit }) {
     })
   })
 }
+
 export function handleAuthStateChanged ({ commit, dispatch, state }) {
   firebaseAuth.onAuthStateChanged(user => {
     if (user) {
@@ -113,4 +120,29 @@ export function handleAuthStateChanged ({ commit, dispatch, state }) {
       this.$router.replace('/auth')
     }
   })
+}
+
+export function firebaseGetMessages({commit ,state}, otherUserId) {
+  let userId = state.userDetails.userId;
+  let messagesRef = ref(firebaseDb, 'chats/' + userId + '/' + otherUserId);
+  onChildAdded(messagesRef, DataSnapshot => {
+    let messageDetails = DataSnapshot.val();
+    let messageId = DataSnapshot.key;
+    commit('addMessage', {
+      messageId,
+      messageDetails
+    })
+  })
+}
+
+export function firebaseStopGettingMessages({commit, state},  otherUserId) {
+    let userId = state.userDetails.userId;
+    let messagesRef = ref(firebaseDb, 'chats/' + userId + '/' + otherUserId);
+    if (messagesRef) {
+      off(messagesRef, "onChildAdded")
+      commit('clearMessages')
+    }
+    
+  
+  
 }
