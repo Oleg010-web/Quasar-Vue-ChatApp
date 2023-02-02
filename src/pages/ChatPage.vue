@@ -33,40 +33,19 @@
 
 <script>
 // imports
-import { mapActions } from 'vuex';
+import { mapState ,mapActions } from 'vuex';
 
 export default {
   data() {
     return {
       newMessage: "",
-      messages: [
-        {
-          text: "Hi, my friend, how are you today?",
-          from: "me",
-        },
-        {
-          text: "I was on vacation last week, had a good time)",
-          from: "me",
-        },
-        {
-          text: "Wow, that is really interestig, glad for you, where have you been?",
-          from: "them",
-        },
-        {
-          text:
-            "Was in Thailand) I need to tell you so many things, lets meet and i will tell you everything. I think it will be better then to chat here",
-          from: "me",
-        },
-        {
-          text: "Cool) Yeah, i agree.",
-          from: "them",
-        },
-      ],
     };
   },
-
+  // computed
+  computed: {
+    ...mapState('state', ['messages'])
+  },
   // methods
-
   methods: {
     ...mapActions('state', ['firebaseGetMessages']),
     sendMessage() {
@@ -77,6 +56,7 @@ export default {
       this.newMessage = "";
     },
   },
+  // lifecycle hooks
   mounted() {
     this.firebaseGetMessages(this.$route.params.otherUserId)
   }
