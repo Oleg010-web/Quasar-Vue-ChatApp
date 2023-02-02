@@ -47,7 +47,7 @@ export default {
   },
   // methods
   methods: {
-    ...mapActions('state', ['firebaseGetMessages']),
+    ...mapActions('state', ['firebaseGetMessages', 'firebaseStopGettingMessages']),
     sendMessage() {
       this.messages.push({
         text: this.newMessage,
@@ -59,7 +59,10 @@ export default {
   // lifecycle hooks
   mounted() {
     this.firebaseGetMessages(this.$route.params.otherUserId)
-  }
+  },
+  unmounted() {
+    this.firebaseStopGettingMessages()
+  },
 };
 </script>
 

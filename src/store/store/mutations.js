@@ -19,3 +19,7 @@ export function updateUser(state, payload) {
 export function addMessage(state, payload) {
     set(state.messages, payload.messageId, payload.messageDetails)
 }
+
+export function clearMessages(state) {
+    state.messages = {}
+}

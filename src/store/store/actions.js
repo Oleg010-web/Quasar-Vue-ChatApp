@@ -10,15 +10,17 @@ import {
   signOut,
   onValue,
   onChildAdded,
-  onChildChanged
+  onChildChanged,
+  off
 } from 'src/boot/firebase'
 import { createUserWithEmailAndPassword } from 'src/boot/firebase'
-import { setUserDetails, updateUser, addMessage } from './mutations'
+import { setUserDetails, updateUser, addMessage, clearMessages } from './mutations'
 
 /*
 export function someAction (context) {
 }
 */
+
 
 export function registerUser ({}, payload) {
   console.log(payload)
@@ -122,8 +124,8 @@ export function handleAuthStateChanged ({ commit, dispatch, state }) {
 
 export function firebaseGetMessages({commit ,state}, otherUserId) {
   let userId = state.userDetails.userId;
-  let chatCounterRef = ref(firebaseDb, 'chats/' + userId + '/' + otherUserId);
-  onChildAdded(chatCounterRef, DataSnapshot => {
+  let messagesRef = ref(firebaseDb, 'chats/' + userId + '/' + otherUserId);
+  onChildAdded(messagesRef, DataSnapshot => {
     let messageDetails = DataSnapshot.val();
     let messageId = DataSnapshot.key;
     commit('addMessage', {
@@ -131,4 +133,16 @@ export function firebaseGetMessages({commit ,state}, otherUserId) {
       messageDetails
     })
   })
+}
+
+export function firebaseStopGettingMessages({commit, state},  otherUserId) {
+    let userId = state.userDetails.userId;
+    let messagesRef = ref(firebaseDb, 'chats/' + userId + '/' + otherUserId);
+    if (messagesRef) {
+      off(messagesRef, "onChildAdded")
+      commit('clearMessages')
+    }
+    
+  
+  
 }
