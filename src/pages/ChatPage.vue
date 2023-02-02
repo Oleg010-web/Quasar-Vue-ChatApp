@@ -32,6 +32,9 @@
 </template>
 
 <script>
+// imports
+import { mapActions } from 'vuex';
+
 export default {
   data() {
     return {
@@ -65,6 +68,7 @@ export default {
   // methods
 
   methods: {
+    ...mapActions('state', ['firebaseGetMessages']),
     sendMessage() {
       this.messages.push({
         text: this.newMessage,
@@ -73,6 +77,9 @@ export default {
       this.newMessage = "";
     },
   },
+  mounted() {
+    this.firebaseGetMessages(this.$route.params.otherUserId)
+  }
 };
 </script>
 
