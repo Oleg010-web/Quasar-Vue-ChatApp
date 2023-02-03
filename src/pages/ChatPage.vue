@@ -1,6 +1,6 @@
 <template>
   <q-page class="flex" column>
-    <q-banner class="text-white bg-grey-5 text-center"> User is offline. </q-banner>
+    <q-banner class="text-white bg-grey-5 text-center"> {{otherUserDetails.name}} is offline. </q-banner>
     <div class="q-pa-md column col justify-end">
       <q-chat-message
         v-for="message in messages"
@@ -34,8 +34,10 @@
 <script>
 // imports
 import { mapState ,mapActions } from 'vuex';
+import mixinOtherUserFetails from 'src/mixins/mixin-other-user-details'
 
 export default {
+  mixins: [mixinOtherUserFetails],
   data() {
     return {
       newMessage: "",
@@ -43,11 +45,11 @@ export default {
   },
   // computed
   computed: {
-    ...mapState('state', ['messages', 'userDetails']),
-    otherUserDetails() {
-      return this.$store.state.state.users[this.$route.params.otherUserId]
+    ...mapState('state', ['messages', 'userDetails'])
+    // otherUserDetails() {
+    //   return this.$store.state.state.users[this.$route.params.otherUserId]
       
-    }
+    // }
   },
   // methods
   methods: {
