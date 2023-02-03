@@ -49,16 +49,17 @@ import { defineComponent, ref, computed } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
 import { openURL } from 'quasar'
 import { mapState, mapActions } from 'vuex'
+import mixinOtherUserFetails from 'src/mixins/mixin-other-user-details'
 
 export default {
-
+    mixins: [mixinOtherUserFetails],
   // computed
   computed: {
     ...mapState('state', ['userDetails']),
     title () {
       const currentPath = this.$route.fullPath;
       if (currentPath == '/') return 'SmackChat'
-      else if (currentPath == '/chat') return 'Chat'
+      else if (currentPath.includes('/chat')) return this.otherUserDetails.name
       else if (currentPath == '/auth') return 'Login'
       return ''
   }
