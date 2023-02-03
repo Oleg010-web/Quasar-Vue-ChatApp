@@ -5,7 +5,7 @@
       <q-chat-message
         v-for="message in messages"
         :key="message.text"
-        :name="message.from"
+        :name="message.from == 'me' ? userDetails.name : otherUserDetails.name"
         :text="[message.text]"
         :sent="message.from == 'me' ? true : false"
       />
@@ -43,7 +43,11 @@ export default {
   },
   // computed
   computed: {
-    ...mapState('state', ['messages'])
+    ...mapState('state', ['messages', 'userDetails']),
+    otherUserDetails() {
+      return this.$store.state.state.users[this.$route.params.otherUserId]
+      
+    }
   },
   // methods
   methods: {
