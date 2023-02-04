@@ -19,7 +19,8 @@ import {
   onValue,
   onChildAdded,
   onChildChanged,
-  off
+  off,
+  push
 } from 'firebase/database'
 
 const firebaseConfig = {
@@ -52,5 +53,6 @@ export {
   onValue,
   onChildAdded,
   onChildChanged,
-  off
+  off,
+  push
 }
