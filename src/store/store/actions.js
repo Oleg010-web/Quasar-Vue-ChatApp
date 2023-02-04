@@ -1,4 +1,4 @@
-import { DataSnapshot, update } from 'firebase/database'
+import { DataSnapshot, push, update } from 'firebase/database'
 import {
   firebaseAuth,
   firebaseDb,
@@ -142,7 +142,14 @@ export function firebaseStopGettingMessages({commit, state},  otherUserId) {
       off(messagesRef, "onChildAdded")
       commit('clearMessages')
     }
-    
+}
+
+export function firebaseSendMessage({state}, payload) {
+  console.log("payload: ", payload);
+ 
+  push(ref(firebaseDb, 'chats/' + state.userDetails.userId + '/' + payload.otherUserId), payload.message)
   
-  
+  payload.message.from = 'them'
+
+  push(ref(firebaseDb, 'chats/' + payload.otherUserId + '/' + state.userDetails.userId), payload.message)
 }
