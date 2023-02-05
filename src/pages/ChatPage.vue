@@ -2,11 +2,11 @@
   <q-banner v-if="!otherUserDetails.online" class="text-white bg-grey-5 text-center">
     {{ otherUserDetails.name }} is offline.
   </q-banner>
-  <q-page class="flex" column>
+  <q-page ref="pageChat" class="flex" column>
     <div class="q-pa-md column col justify-end">
       <q-chat-message
-        v-for="message in messages"
-        :key="message.text"
+        v-for="(message, key) in messages"
+        :key="key"
         :name="message.from == 'me' ? userDetails.name : otherUserDetails.name"
         :text="[message.text]"
         :sent="message.from == 'me' ? true : false"
@@ -47,11 +47,8 @@ export default {
   },
   // computed
   computed: {
-    ...mapState("state", ["messages", "userDetails"]),
-    // otherUserDetails() {
-    //   return this.$store.state.state.users[this.$route.params.otherUserId]
-
-    // }
+    ...mapState("state", ["messages", "userDetails"])
+  
   },
   // methods
   methods: {
@@ -67,7 +64,24 @@ export default {
         
       this.newMessage = "";
     },
+    scrollToBottom() {
+      let pageChaT = this.$refs.pageChat.$el;
+      setTimeout(() => {
+        window.scrollTo(0, pageChaT.scrollHeight)
+      }, 20);
+    }
   },
+  // watch
+  watch: {
+     messages: function (val) {
+      if (Object.keys(val).length) {
+        this.scrollToBottom()
+      }
+      deep: true
+    }
+  },
+ 
+
   // lifecycle hooks
   mounted() {
     this.firebaseGetMessages(this.$route.params.otherUserId);

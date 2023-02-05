@@ -145,7 +145,6 @@ export function firebaseStopGettingMessages({commit, state},  otherUserId) {
 }
 
 export function firebaseSendMessage({state}, payload) {
-  console.log("payload: ", payload);
  
   push(ref(firebaseDb, 'chats/' + state.userDetails.userId + '/' + payload.otherUserId), payload.message)
   
