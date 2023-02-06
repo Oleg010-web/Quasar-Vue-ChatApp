@@ -3,7 +3,9 @@
     {{ otherUserDetails.name }} is offline.
   </q-banner>
   <q-page ref="pageChat" class="flex" column>
-    <div class="q-pa-md column col justify-end">
+    <div 
+    :class="{ invisible : !showMessages }"
+    class="q-pa-md column col justify-end">
       <q-chat-message
         v-for="(message, key) in messages"
         :key="key"
@@ -37,12 +39,14 @@
 // imports
 import { mapState, mapActions } from "vuex";
 import mixinOtherUserFetails from "src/mixins/mixin-other-user-details";
+import { watch } from "vue";
 
 export default {
   mixins: [mixinOtherUserFetails],
   data() {
     return {
       newMessage: "",
+      showMessages: false
     };
   },
   // computed
@@ -72,12 +76,17 @@ export default {
     }
   },
   // watch
-  watch: {
-     messages: function (val) {
-      if (Object.keys(val).length) {
-        this.scrollToBottom()
-      }
-      deep: true
+    watch: {
+      messages: {
+        handler: function(val) {
+        if (Object.keys(val).length) {
+          this.scrollToBottom()
+          setTimeout(() => {
+            this.showMessages = true
+          }, 200);
+        }
+      },
+      deep: true,
     }
   },
  
