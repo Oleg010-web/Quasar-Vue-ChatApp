@@ -1,10 +1,10 @@
 <template>
   <q-page class="flex q-pa-md">
-    <q-card class="full-width">
+    <q-card class="auth-page-card">
       <q-tabs
         v-model="tab"
         dense
-        class="text-grey"
+        class="auth-page-card__tab-item"
         active-color="primary"
         indicator-color="primary"
         align="justify"
@@ -48,4 +48,13 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+  .auth-page-card{
+    width: 100%;
+  }
+
+  .auth-page-card__tab-item{
+    color: grey;
+  }
+
+</style>

@@ -1,11 +1,11 @@
 <template>
-  <q-banner v-if="!otherUserDetails.online" class="banner text-white bg-grey-5 text-center">
+  <q-banner v-if="!otherUserDetails.online" class="online-status-banner text-white bg-grey-5 text-center">
     {{ otherUserDetails.name }} is offline.
   </q-banner>
-  <q-page ref="pageChat" class="page-chat flex" column>
+  <q-page ref="pageChat" class="page-chat-main-div flex" column>
     <div 
     :class="{ invisible : !showMessages }"
-    class="message q-pa-md column col justify-end">
+    class="page-chat-main-div__message-item q-pa-md column col justify-end">
       <q-chat-message
         v-for="(message, key) in messages"
         :key="key"
@@ -18,10 +18,10 @@
     </div>
     <q-footer elevated>
       <q-toolbar >
-        <q-form @submit="sendMessage" class="full-width" >
+        <q-form @submit="sendMessage" class="page-chat-main-div__form-item" >
           <q-input
             ref="newMessasge"
-            bg-color="white"
+            class="page-chat-main-div__form-item_input"
             outlined
             rounded
             v-model="newMessage"
@@ -29,7 +29,7 @@
             dense
           >
             <template v-slot:after>
-              <q-btn @click="sendMessage" round color="white" dense flat icon="send" />
+              <q-btn @click="sendMessage" round class="page-chat-main-div__form-item_send-button" dense flat icon="send" />
             </template>
           </q-input>
         </q-form>
@@ -105,22 +105,40 @@ export default {
 </script>
 
 <style>
-  .page-chat{
-    
-    content: '';
-    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='100%25' width='100%25'%3E%3Cdefs%3E%3Cpattern id='doodad' width='40' height='40' viewBox='0 0 40 40' patternUnits='userSpaceOnUse' patternTransform='rotate(135)'%3E%3Crect width='100%25' height='100%25' fill='%232a4365'/%3E%3Cpath d='M0 29a 9-9 0 0 0 9-9a 11-11 0 0 1 11-11v2a-9 9 0 0 0-9 9a-11 11 0 0 1-11 11zM0 69a 9-9 0 0 0 9-9a 11-11 0 0 1 11-11v2a-9 9 0 0 0-9 9a-11 11 0 0 1-11 11z' fill='%231a202c'/%3E%3Cpath d='M20 29.5a 9.5-9.5 0 0 0 9.5-9.5a 10.5-10.5 0 0 1 10.5-10.5v1a-9.5 9.5 0 0 0-9.5 9.5a-10.5 10.5 0 0 1-10.5 10.5z' fill='%23ecc94b'/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23doodad)' height='200%25' width='200%25'/%3E%3C/svg%3E ");
-
-/* source: https://doodad.dev/pattern-generator */
-  }
-  .message{
-    font-weight: 600;
-    
-  }
-  .banner{
+  
+  .online-status-banner{
     position: fixed;
     width: 100%;
     top: 50px;
     z-index: 2;
     opacity: 0.8;
   }
+
+  .page-chat-main-div{
+    
+    content: '';
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='100%25' width='100%25'%3E%3Cdefs%3E%3Cpattern id='doodad' width='40' height='40' viewBox='0 0 40 40' patternUnits='userSpaceOnUse' patternTransform='rotate(135)'%3E%3Crect width='100%25' height='100%25' fill='%232a4365'/%3E%3Cpath d='M0 29a 9-9 0 0 0 9-9a 11-11 0 0 1 11-11v2a-9 9 0 0 0-9 9a-11 11 0 0 1-11 11zM0 69a 9-9 0 0 0 9-9a 11-11 0 0 1 11-11v2a-9 9 0 0 0-9 9a-11 11 0 0 1-11 11z' fill='%231a202c'/%3E%3Cpath d='M20 29.5a 9.5-9.5 0 0 0 9.5-9.5a 10.5-10.5 0 0 1 10.5-10.5v1a-9.5 9.5 0 0 0-9.5 9.5a-10.5 10.5 0 0 1-10.5 10.5z' fill='%23ecc94b'/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23doodad)' height='200%25' width='200%25'/%3E%3C/svg%3E ");
+
+    }
+  
+  .page-chat-main-div__message-item{
+      font-weight: 600;
+      
+    }
+
+  .page-chat-main-div__form-item{
+      width: 100%;
+
+    
+    }
+  .page-chat-main-div__form-item_input {
+          background-color: white;
+    }
+      
+    .page-chat-main-div__form-item_send-button{
+      color: white;
+    }
+
+
+  
 </style>
