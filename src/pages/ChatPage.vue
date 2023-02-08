@@ -19,7 +19,7 @@
         :bg-color="message.from == 'me' ? 'light-grey-3' : 'light-green-2'"
       />
     </div>
-    <q-footer elevated>
+    <q-footer elevated class="page-chat-main-div__q-footer">
       <q-toolbar>
         <q-form @submit="sendMessage" class="page-chat-main-div__form-item">
           <q-input
@@ -126,7 +126,7 @@ export default {
 
 .page-chat-main-div {
   content: "";
-  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='100%25' width='100%25'%3E%3Cdefs%3E%3Cpattern id='doodad' width='40' height='40' viewBox='0 0 40 40' patternUnits='userSpaceOnUse' patternTransform='rotate(135)'%3E%3Crect width='100%25' height='100%25' fill='%232a4365'/%3E%3Cpath d='M0 29a 9-9 0 0 0 9-9a 11-11 0 0 1 11-11v2a-9 9 0 0 0-9 9a-11 11 0 0 1-11 11zM0 69a 9-9 0 0 0 9-9a 11-11 0 0 1 11-11v2a-9 9 0 0 0-9 9a-11 11 0 0 1-11 11z' fill='%231a202c'/%3E%3Cpath d='M20 29.5a 9.5-9.5 0 0 0 9.5-9.5a 10.5-10.5 0 0 1 10.5-10.5v1a-9.5 9.5 0 0 0-9.5 9.5a-10.5 10.5 0 0 1-10.5 10.5z' fill='%23ecc94b'/%3E%3C/pattern%3E%3C/defs%3E%3Crect fill='url(%23doodad)' height='200%25' width='200%25'/%3E%3C/svg%3E ");
+  background: $secondary;
 
   &__message-item {
     font-weight: 600;
@@ -134,14 +134,20 @@ export default {
 
   &__form-item {
     width: 100%;
+    visibility: visible;
 
     &_input {
-      background-color: white;
+      color: white;
     }
 
     &_send-button {
-      color: white;
+      color: black;
     }
+  }
+
+  &__q-footer{
+    visibility: visible;
+    background-color: white;
   }
 }
 </style>

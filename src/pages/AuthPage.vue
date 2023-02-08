@@ -15,7 +15,7 @@
       </q-tabs>
 
       <q-separator />
-
+      
       <q-tab-panels v-model="tab" animated>
         <q-tab-panel name="login">
           <login-register :tab="tab" />
@@ -25,6 +25,7 @@
           <login-register :tab="tab" />
         </q-tab-panel>
       </q-tab-panels>
+      <pre-loader  v-if="getPreloadStatus"/>
     </q-card>
   </q-page>
 </template>
@@ -33,6 +34,8 @@
 // imports
 import { ref } from "vue";
 import LoginRegister from "components/LoginRegister.vue";
+import PreLoader from "src/components/PreLoader.vue";
+import { mapGetters } from "vuex";
 
 // data
 export default {
@@ -44,7 +47,14 @@ export default {
   // components
   components: {
     LoginRegister,
+    PreLoader
   },
+
+  // Computed
+
+  computed: {
+    ...mapGetters("state", ["getPreloadStatus"])
+  }
 };
 </script>
 

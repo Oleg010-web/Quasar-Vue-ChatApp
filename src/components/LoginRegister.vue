@@ -33,7 +33,7 @@
 import { mapActions } from "vuex";
 
 export default {
-  props: ["tab"],
+  props: ["tab", "loadingStatus"],
   data() {
     return {
       formData: {
@@ -49,10 +49,12 @@ export default {
     submitForm() {
       if (this.tab == "login") {
         this.loginUser(this.formData);
+        
       } else {
         this.registerUser(this.formData);
       }
     },
   },
+
 };
 </script>

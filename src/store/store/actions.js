@@ -14,7 +14,7 @@ import {
   off
 } from 'src/boot/firebase'
 import { createUserWithEmailAndPassword } from 'src/boot/firebase'
-import { setUserDetails, updateUser, addMessage, clearMessages } from './mutations'
+import { setUserDetails, updateUser, addMessage, clearMessages, preloadStatus } from './mutations'
 
 /*
 export function someAction (context) {
@@ -22,8 +22,12 @@ export function someAction (context) {
 */
 
 
+
+
 export function registerUser ({}, payload) {
+  let loadingStatus = true;
   console.log(payload)
+  commit('preloadStatus', {loadingStatus})
   createUserWithEmailAndPassword(firebaseAuth, payload.email, payload.password)
     .then(Response => {
       console.log(Response)
@@ -40,7 +44,9 @@ export function registerUser ({}, payload) {
     })
 }
 
-export function loginUser ({}, payload) {
+export function loginUser ({commit}, payload) {
+  let loadingStatus = true;
+  commit('preloadStatus', {loadingStatus})
   console.log(payload)
   signInWithEmailAndPassword(firebaseAuth, payload.email, payload.password)
     .then(Response => {
@@ -51,7 +57,9 @@ export function loginUser ({}, payload) {
     })
 }
 
-export function logOutUser () {
+export function logOutUser ({commit}) {
+  let loadingStatus = false;
+  commit('preloadStatus', {loadingStatus}),
   firebaseAuth.signOut()
 }
 
@@ -152,3 +160,4 @@ export function firebaseSendMessage({state}, payload) {
 
   push(ref(firebaseDb, 'chats/' + payload.otherUserId + '/' + state.userDetails.userId), payload.message)
 }
+

@@ -23,3 +23,14 @@ export function addMessage(state, payload) {
 export function clearMessages(state) {
     state.messages = {}
 }
+
+export function preloadStatus(state, payload) {
+    if (payload.loadingStatus == true) {
+        state.loadingStatus = payload.loadingStatus
+        console.log(state.loadingStatus);
+    }else if (payload.loadingStatus == false) {
+        state.loadingStatus = payload.loadingStatus
+        console.log(state.loadingStatus);
+    }
+    
+}
