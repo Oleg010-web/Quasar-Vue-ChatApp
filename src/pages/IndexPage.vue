@@ -1,7 +1,13 @@
 <template>
   <q-page class="flex q-pa-md">
     <q-list class="index-page-list" separator="">
-      <q-item v-for="(user, key) in users" :key="key" :to="'/chat/' + key" clickable v-ripple>
+      <q-item
+        v-for="(user, key) in users"
+        :key="key"
+        :to="'/chat/' + key"
+        clickable
+        v-ripple
+      >
         <q-item-section avatar>
           <q-avatar color="primary" class="index-page-list__avatar-item">
             {{ user.name.charAt(0) }}
@@ -35,13 +41,12 @@ export default {
 };
 </script>
 
-<style>
-  .index-page-list{
-    width: 100%;
-  }
+<style scoped lang="scss">
+.index-page-list {
+  width: 100%;
 
-  .index-page-list__avatar-item{
+  &__avatar-item {
     color: white;
   }
-
+}
 </style>

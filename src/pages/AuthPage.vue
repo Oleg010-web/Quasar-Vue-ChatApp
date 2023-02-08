@@ -48,13 +48,12 @@ export default {
 };
 </script>
 
-<style>
-  .auth-page-card{
-    width: 100%;
-  }
+<style scoped lang="scss">
+.auth-page-card {
+  width: 100%;
 
-  .auth-page-card__tab-item{
+  &__tab-item {
     color: grey;
   }
-
+}
 </style>
