@@ -27,10 +27,8 @@ export function clearMessages(state) {
 export function preloadStatus(state, payload) {
     if (payload.loadingStatus == true) {
         state.loadingStatus = payload.loadingStatus
-        console.log(state.loadingStatus);
     }else if (payload.loadingStatus == false) {
         state.loadingStatus = payload.loadingStatus
-        console.log(state.loadingStatus);
     }
     
 }

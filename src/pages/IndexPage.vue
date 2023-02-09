@@ -1,5 +1,5 @@
 <template>
-  <q-page class="flex q-pa-md">
+  <q-page class="flex ">
     <q-list class="index-page-list" separator="">
       <q-item
         v-for="(user, key) in users"
@@ -43,10 +43,13 @@ export default {
 
 <style scoped lang="scss">
 .index-page-list {
-  width: 100%;
+  width: 1200px;
+  justify-content: center;
+  margin: 0 auto;
 
   &__avatar-item {
     color: white;
+    width: 100%;
   }
 }
 </style>

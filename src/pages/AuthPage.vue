@@ -1,6 +1,6 @@
 <template>
   <q-page class="flex q-pa-md">
-    <q-card class="auth-page-card">
+    <q-card class="auth-page-card" >
       <q-tabs
         v-model="tab"
         dense
@@ -25,7 +25,7 @@
           <login-register :tab="tab" />
         </q-tab-panel>
       </q-tab-panels>
-      <pre-loader  v-if="getPreloadStatus"/>
+      <pre-loader  v-if="getPreloadStatus" class="auth-page-card__preloader"/>
     </q-card>
   </q-page>
 </template>
@@ -36,12 +36,14 @@ import { ref } from "vue";
 import LoginRegister from "components/LoginRegister.vue";
 import PreLoader from "src/components/PreLoader.vue";
 import { mapGetters } from "vuex";
+import { getPreloadStatus } from "src/store/store/getters";
 
 // data
 export default {
   setup() {
     return {
       tab: ref("login"),
+      loadingStatus: getPreloadStatus
     };
   },
   // components
@@ -53,17 +55,23 @@ export default {
   // Computed
 
   computed: {
-    ...mapGetters("state", ["getPreloadStatus"])
+    ...mapGetters("state", ["getPreloadStatus"]),
   }
 };
 </script>
 
 <style scoped lang="scss">
 .auth-page-card {
-  width: 100%;
+  width: 1200px;
+  margin: 0 auto;
 
   &__tab-item {
     color: grey;
+  }
+
+  &__preloader {
+    margin: 0 auto;
+    width: 100px;
   }
 }
 </style>

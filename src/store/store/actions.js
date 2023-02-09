@@ -58,9 +58,13 @@ export function loginUser ({commit}, payload) {
 }
 
 export function logOutUser ({commit}) {
-  let loadingStatus = false;
-  commit('preloadStatus', {loadingStatus}),
-  firebaseAuth.signOut()
+  setTimeout(() => {
+      firebaseAuth.signOut()
+  }, 200);
+  setTimeout(() => {
+    let loadingStatus = false;
+    commit('preloadStatus', {loadingStatus})
+  }, 500);
 }
 
 export function firebaseUpdateUser ({}, payload) {

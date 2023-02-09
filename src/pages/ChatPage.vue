@@ -117,15 +117,18 @@ export default {
 
 <style scoped lang="scss">
 .online-status-banner {
-  position: fixed;
-  width: 100%;
+  max-width: 1200px;
   top: 50px;
+  margin: 0 auto;
   z-index: 2;
   opacity: 0.8;
+  text-align: center;
 }
 
 .page-chat-main-div {
   content: "";
+  max-width: 1200px;
+  margin: 0 auto;
   background: $secondary;
 
   &__message-item {
@@ -137,7 +140,8 @@ export default {
     visibility: visible;
 
     &_input {
-      color: white;
+      background-color: white;
+      border-radius: 25px
     }
 
     &_send-button {
@@ -147,7 +151,10 @@ export default {
 
   &__q-footer{
     visibility: visible;
-    background-color: white;
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: $secondary;
+    border: 1 px solid black;
   }
 }
 </style>
