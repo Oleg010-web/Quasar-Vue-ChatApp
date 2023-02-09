@@ -14,3 +14,7 @@ export function users (state) {
   })
   return usersFiltered
 }
+
+export function getPreloadStatus(state) {
+  return state.loadingStatus
+}

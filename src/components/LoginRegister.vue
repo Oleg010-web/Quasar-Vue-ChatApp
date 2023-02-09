@@ -6,6 +6,7 @@
       v-model="formData.name"
       label="Name"
       class="q-mb-md"
+      :disable="getPreloadStatus"
     />
     <q-input
       outlined
@@ -13,6 +14,7 @@
       v-model="formData.email"
       label="Email"
       class="q-mb-md"
+      :disable="getPreloadStatus"
     />
     <q-input
       outlined
@@ -20,20 +22,22 @@
       v-model="formData.password"
       label="Password"
       class="q-mb-md"
+      :disable="getPreloadStatus"
     />
     <div class="row">
       <q-space />
-      <q-btn @click="submitForm" color="primary" :label="tab" />
+      <q-btn @click="submitForm" color="primary" :label="tab" v-if="!getPreloadStatus" />
     </div>
   </q-form>
 </template>
 
 <script>
 //imports
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
+import { getPreloadStatus } from "src/store/store/getters";
 
 export default {
-  props: ["tab"],
+  props: ["tab", "loadingStatus"],
   data() {
     return {
       formData: {
@@ -42,6 +46,11 @@ export default {
         password: "",
       },
     };
+  },
+  // computed
+
+  computed: {
+    ...mapGetters("state", ["getPreloadStatus"]),
   },
   // methods
   methods: {
