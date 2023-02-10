@@ -46,6 +46,8 @@ export default {
   width: 1200px;
   justify-content: center;
   margin: 0 auto;
+  background-color: $secondary;
+  color: white;
 
   &__avatar-item {
     color: white;
