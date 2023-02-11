@@ -1,5 +1,5 @@
 <template>
-  <q-page class="flex q-pa-md">
+  <q-page class="flex ">
     <q-card class="auth-page-card" >
       <q-tabs
         v-model="tab"
@@ -16,7 +16,7 @@
 
       <q-separator />
       
-      <q-tab-panels v-model="tab" animated>
+      <q-tab-panels v-model="tab" animated class="auth-page-card__tab-panel">
         <q-tab-panel name="login">
           <login-register :tab="tab" />
         </q-tab-panel>
@@ -64,14 +64,21 @@ export default {
 .auth-page-card {
   width: 1200px;
   margin: 0 auto;
+  background-color: $secondary;
+  box-sizing: border-box;
 
   &__tab-item {
-    color: grey;
+    color: $light;
   }
 
   &__preloader {
     margin: 0 auto;
     width: 100px;
+  }
+
+  &__tab-panel {
+    padding: 0;
+    background-color: $primary;
   }
 }
 </style>

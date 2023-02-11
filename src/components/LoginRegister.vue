@@ -1,11 +1,11 @@
 <template>
-  <q-form @submit="submitForm">
+  <q-form @submit="submitForm" class="formSubmit">
     <q-input
       v-if="tab == 'register'"
       outlined
       v-model="formData.name"
       label="Name"
-      class="q-mb-md"
+      class="formSubmit__input q-mb-md"
       :disable="getPreloadStatus"
     />
     <q-input
@@ -13,7 +13,7 @@
       type="email"
       v-model="formData.email"
       label="Email"
-      class="q-mb-md"
+      class="formSubmit__input q-mb-md"
       :disable="getPreloadStatus"
     />
     <q-input
@@ -21,7 +21,7 @@
       type="password"
       v-model="formData.password"
       label="Password"
-      class="q-mb-md"
+      class="formSubmit__input q-mb-md"
       :disable="getPreloadStatus"
     />
     <div class="row">
@@ -65,3 +65,20 @@ export default {
   },
 };
 </script>
+
+<style scoped lang="scss">
+ .formSubmit {
+  max-width: 1200px;
+  background-color: $primary;
+  box-sizing: border-box;
+  color: $light;
+  margin-left: 0;
+  margin-right: 0;
+
+  &__input {
+    border: 1 px solid $light;
+    background-color: $light;
+    color: $secondary;
+  }
+ }
+</style>
