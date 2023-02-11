@@ -140,12 +140,12 @@ export default {
     visibility: visible;
 
     &_input {
-      background-color: white;
+      background-color: $light;
       border-radius: 25px
     }
 
     &_send-button {
-      color: black;
+      color: $dark ;
     }
   }
 
@@ -154,7 +154,7 @@ export default {
     max-width: 1200px;
     margin: 0 auto;
     background-color: $secondary;
-    border: 1 px solid black;
+    border: 1 px solid $dark ;
   }
 }
 </style>

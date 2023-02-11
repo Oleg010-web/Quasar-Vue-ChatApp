@@ -68,7 +68,7 @@ export default {
   box-sizing: border-box;
 
   &__tab-item {
-    color: white;
+    color: $light;
   }
 
   &__preloader {

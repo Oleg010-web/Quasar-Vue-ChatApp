@@ -71,13 +71,13 @@ export default {
   max-width: 1200px;
   background-color: $primary;
   box-sizing: border-box;
-  color: white;
+  color: $light;
   margin-left: 0;
   margin-right: 0;
 
   &__input {
-    border: 1 px solid white;
-    background-color: white;
+    border: 1 px solid $light;
+    background-color: $light;
     color: $secondary;
   }
  }

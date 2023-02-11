@@ -47,10 +47,10 @@ export default {
   justify-content: center;
   margin: 0 auto;
   background-color: $secondary;
-  color: white;
+  color: $light;
 
   &__avatar-item {
-    color: white;
+    color: $light;
     width: 100%;
   }
 }
